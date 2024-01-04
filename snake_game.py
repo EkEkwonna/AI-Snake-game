@@ -114,7 +114,7 @@ class SnakeGameAI:
         # 3. check if game over
         reward = 0
         game_over = False
-        if self._is_collision() or self.frame_iteration > 100*len(self.snake):
+        if self.is_collision() or self.frame_iteration > 100*len(self.snake):
             game_over = True
             reward = -10
             return reward , game_over, self.score
@@ -134,7 +134,7 @@ class SnakeGameAI:
         return reward , game_over, self.score
     
 
-    def _is_collision(self , pt = None):
+    def is_collision(self , pt = None):
         
         """
         pt = Point arguement confirm the point at where the head of the snake is 
@@ -183,7 +183,7 @@ class SnakeGameAI:
             next_idx = (idx + 1 ) % 4
             new_dir = clock_wise[next_idx ] #right turn r -> d -> l -> u 
         
-        else np.array_equal(action,[0,0,1]):
+        else:
             next_idx = (idx - 1) % 4
             new_dir = clock_wise[next_idx] # left turn r -> u -> l -> d
 
